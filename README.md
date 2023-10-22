@@ -4,7 +4,8 @@
 
  ## Installation 
 
- You can clone the repo and run the index.html file
+ You can clone the repo and run the index.html file in the browser
+
 
 ## Screenshot
 
