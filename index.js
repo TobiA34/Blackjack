@@ -1,52 +1,3 @@
-
-// let sumEl = document.getElementById("sum-el")
-
-// //Random number between 2 and 11
-// let firstCard = Math.floor(Math.random() * 11) + 2;
-
-// let secondCard =  Math.floor(Math.random() * 11) + 2;
-
-// let sum = firstCard + secondCard
-
-// if (sum < 21) {
-//   sumEl.textContent = "Do you want to draw a new card? 😊"
-// } else if (sum === 21) {
-//     sumEl.textContent = "You have won the game 🥳"
-// } else {
-//     sumEl.textContent = "You have lost the game 😭"
-
-// }
-// // sumEl.textContent = sum
-
-// console.log(sum)
-
-// let age = 22
-
-// if (age < 21) {
-//     console.log("You can not enter the club!")
-// } else {
-//     console.log("welcome")
-// }
-
-// let age = 100
-
-// if (age < 100) {
-//   console.log("Not elegible")
-// } else if( age === 100) {
-//     console.log("Here is your birthday card from the king")
-// } else {
-//         console.log("Not elegible, you have already gotten one!")
-// }
-// console.log(4===3) //false
-// console.log(5 > 12) //true
-// console.log(12 > 12) //false
-// console.log(3 > 0) //true
-// console.log(3 < 0) //false
-// console.log(3 >= 3) //true
-// console.log(11 <= 11) //true
-// console.log(3 <= 2) //false
-
-
 //Arrays
 let featuredPosts= [
     "Check out my netflix", 
@@ -65,7 +16,8 @@ let tobi = ["Tobi Adegoroye",23, true]
 let messages = [
     "Hey, how's it going?",
     "I'm great, thank you! How about you?",
-    "All good. Been working on my portfolio lately."
+    "All good. Been working on my portfolio lately.",
+    "👋"
 ]
 let newMessage = "Same here!"
 
@@ -75,27 +27,138 @@ console.log(messages)
 messages.pop()
 console.log(messages)
 
+// for(let count = 10; count <= 20; count += 1) {
+//     console.log(count)
+// }
 
+// for(let i = 10; i < 101; i+=10){
+//     console.log(i);
+// }
+
+for( i = 0; i < messages.length; i++) {
+    console.log(messages[i])
+}
+
+let cardsN = [7 , 3, 9]
+
+for(i = 0; i<cardsN.length; i++) {
+    console.log(cardsN[i])
+}
+
+let greetingEl = document.getElementById("greeting-el");
+
+let sentence = ["Hello", "my", "name", "is", "Tobi"]
+
+for(i = 0; i < sentence.length; i++) {
+    greetingEl.textContent += sentence[i] + " "
+}
+
+let playerTime1 = 102
+let player2Time = 107
+
+function getFastestRaceTime(){
+    if (playerTime1 < player2Time) {
+        return playerTime1
+    } else if (player2Time < playerTime1){
+        return player2Time
+    } else {
+        return playerTime1
+    }
+}
+
+let fastestRace = getFastestRaceTime()
+
+console.log(fastestRace)
+
+
+function totalRaceTime() {
+    return playerTime1 + player2Time
+}
+
+let totalTime = totalRaceTime()
+console.log(totalTime)
+
+
+
+function rollDice() {
+let randomN = Math.floor(Math.random() * 6) + 1
+return randomN
+}
+
+let roll = rollDice()
+console.log(roll)
+
+
+let likeDocumentaries = true
+let likesStartups = false
+
+if (likeDocumentaries === true || likesStartups === true) {
+    recommendMovie()
+}
+
+function recommendMovie() {
+    console.log("Hey, check out this new film we think you will like")
+}
+
+// objects
+
+ 
+ 
 // ---------------------------------------------------------------------------------------------------------------------
 
-let firstCard = 10
-let secondCard = 11
-let cards = [firstCard, secondCard]
-let sum = firstCard + secondCard
-let isAlive = true
+ let player = {
+     playerName : "Tobi",
+     playerChips : 145,
+     sayHello: function(){
+        console.log("Hola")
+     }
+ }
+
+ player.sayHello()
+
+let cards = []
+let sum = 0
+let isAlive = false
 let message = ""
 let messageEL = document.getElementById("message-el");
-//let sumEL = document.getElementById("sum-el");
  let sumEL = document.querySelector("#sum-el");
  let cardsEl = document.querySelector("#cards-el");
+ let randomNumber = getRandomCard()
 
+
+
+ let playerEl = document.getElementById("player-el")
+ playerEl.textContent = player.playerName + ": $" + player.playerChips
+
+
+
+ function getRandomCard() {
+    let random = Math.floor(Math.random() * 13) + 1
+    if (random > 10) {
+        return 10
+    } else if (random === 1) {
+        return 11
+    } else {
+      return random
+    }
+ }
 
  function startGame() {
+    isAlive = true
+    hasBlackJack = false
+    let firstCard = getRandomCard()
+    let secondCard = getRandomCard()
+    cards = [firstCard,secondCard]
+    sum = firstCard + secondCard
+
     renderGame()
 }
 
 function renderGame() {
-     cardsEl.textContent = "Cards: " + cards[0] + " - " + cards[1];
+     for(i = 0; i < cards.length; i++){
+     cardsEl.textContent += cards[i] + " - ";
+
+     }
      sumEL.textContent = "Sum:  " + sum;
 
     let hasBlackJack = false
@@ -115,10 +178,12 @@ function renderGame() {
 
 
 function newGame() {
-    let card = Math.floor(Math.random() * 11) + 2;
-    cards.push(card)
-    console.log(cards)
+    if(isAlive === true && hasBlackJack === false) {
+    let card = getRandomCard()
     sum += card
+    cards.push(card)
     renderGame()
+    }
+
 }
 
